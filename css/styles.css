@@ -192,14 +192,17 @@ Nav
   justify-content: space-between;
 }
 .cart-icon {
+  cursor: pointer;
+  border: none;
   position: relative;
   font-size: 1.5rem;
+  background-color: black;
+  color: white;
 }
 .cart-icon:hover {
   transform: scale(1.1);
 }
 .cart-amount-icon {
-  cursor: pointer;
   position: absolute;
   color: var(--clr-white);
   top: -1rem;
@@ -234,9 +237,9 @@ Chart
   padding: 1.25rem;
   box-shadow: var(--dark-shadow);
   transition: var(--transition);
-  /* transform: translateX(100%); */
+  transform: translateX(100%);
 }
-.display-cart {
+.cart.display {
   transform: translateX(0);
 }
 /* .cart-center {
