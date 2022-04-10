@@ -1,5 +1,5 @@
-import "./src/cartToggle.js";
-import fetchProducts from "./src/fecth.js";
+import "./src/cart/setCart.js";
+// import fetchProducts from "./src/fecth.js";
 import filterData from "./src/filterData.js";
 import showItems from "./src/showItems.js";
 import "./src/getItemId.js";
