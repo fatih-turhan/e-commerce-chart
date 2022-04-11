@@ -7,7 +7,8 @@ import setCartDom from "./setCartDom.js";
 // elements
 const amount = document.querySelector(".cart-amount-icon");
 const priceAmount = document.querySelector(".finish-amounth");
-const cartContainer = document.querySelector(".cart-center");
+const cartContainer = document.querySelector(".cart");
+const cartParent = document.querySelector(".cart-center");
 
 let cart = getLocalStorage("cart");
 
@@ -44,7 +45,7 @@ function showPriceTotal() {
   const priceTotal = cart.reduce((total, chartItem) => {
     return (total += chartItem.amount * chartItem.price);
   }, 0);
-  priceAmount.textContent = `Total : ${priceTotal / 100}`;
+  priceAmount.textContent = `Total : ${priceTotal / 100}$`;
 }
 function addCartsToDom() {
   cart.forEach((item) => {
@@ -107,6 +108,14 @@ function setUpCartFunct() {
       } else {
         targetParent.previousElementSibling.textContent = newAmount;
       }
+    }
+    if (target.classList.contains("remove-all-btn")) {
+      cart = [];
+      console.log(cart);
+      const children = [...cartParent.children];
+      children.forEach((child) => {
+        child.remove();
+      });
     }
     showPriceTotal();
     showProductItemsCount();
