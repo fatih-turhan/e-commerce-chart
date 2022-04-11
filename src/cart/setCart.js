@@ -19,6 +19,10 @@ export const setCart = async (id) => {
     setCartDom(product);
   } else {
     // update
+    const amount = updateAmount(id);
+    const singleItem = [...document.querySelectorAll(".amount")];
+    const newAmount = singleItem.find((value) => value.dataset.id === id);
+    newAmount.textContent = amount;
   }
   // show totals
   showProductItemsCount();
@@ -30,7 +34,6 @@ export const setCart = async (id) => {
 };
 
 function showProductItemsCount() {
-  console.log("showcount");
   const itemsCount = cart.reduce((total, chartItem) => {
     return (total += chartItem.amount);
   }, 0);
@@ -38,16 +41,26 @@ function showProductItemsCount() {
 }
 function showPriceTotal() {
   const priceTotal = cart.reduce((total, chartItem) => {
-    console.log(chartItem);
     return (total += chartItem.amount * chartItem.price);
   }, 0);
-  console.log(priceTotal);
   priceAmount.textContent = `Total : ${priceTotal / 100}`;
 }
 function addCartsToDom() {
   cart.forEach((item) => {
     setCartDom(item);
   });
+}
+
+function updateAmount(id) {
+  let newAmount;
+  cart = cart.map((cartItem) => {
+    if (cartItem.id === id) {
+      newAmount = cartItem.amount + 1;
+      cartItem = { ...cartItem, amount: newAmount };
+    }
+    return cartItem;
+  });
+  return newAmount;
 }
 
 const init = () => {
